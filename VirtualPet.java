@@ -30,10 +30,24 @@ public class VirtualPet {
         face.setMessage("1, 2, 3, jump.  Whew.");
         face.setImage("tired");
     }
+    public void waitABeat(int ms) {
+        try {
+            Thread.sleep(ms); // milliseconds
+        } catch (Exception e) {
+
+        }
+    }
     
     public void sleep() {
         hunger = hunger + 1;
         face.setImage("asleep");
+    }
+
+    public void death() {
+        if (hunger <= 100) {
+            face.setImage("skeleton");
+            face.setMessage("I'm dead");
+        }
     }
 
 } // end Virtual Pet
