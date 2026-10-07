@@ -7,33 +7,33 @@ public class VirtualPet {
     public VirtualPet() {
         face = new VirtualPetFace();
         face.setImage("normal");
-        face.setMessage("Hello! Feed me, play with me, and let me sleep.");
+        face.setMessage("Hi! Feed, play with me, and let me sleep!");
     }
 
     public void feed() {
         if (hunger >= 20) {
             hunger = hunger - 20;
             face.setImage("happy_1");
-            face.setMessage("Yum! Thank you.");
+            face.setMessage("Yum!");
         } else {
             face.setImage("annoyed_1");
-            face.setMessage("I'm full already!");
+            face.setMessage("I'm full");
         }
     }
 
     public void play() {
         if (hunger >= 80) {
             face.setImage("hungry_1");
-            face.setMessage("I'm too hungry to play. Feed me first.");
+            face.setMessage("I'm too hungry to play. Feed me!");
         } else {
             if (energy >= 20) {
                 hunger = hunger + 20;
                 energy = energy - 20;
                 face.setImage("exercising_1");
-                face.setMessage("That was fun!");
+                face.setMessage("I love playing!");
             } else {
                 face.setImage("tired_1");
-                face.setMessage("I'm too tired to play. Let me sleep.");
+                face.setMessage("I'm too tired to play!");
             }
         }
     }
@@ -45,15 +45,15 @@ public class VirtualPet {
         if (hunger >= 100) {
             alive = false;
             face.setImage("pushingdaisies");
-            face.setMessage("I got too hungry. Game over.");
+            face.setMessage("I got too hungry. I'm dead.");
         } else {
             face.setImage("asleep_1");
-            face.setMessage("Zzz... I feel rested now.");
+            face.setMessage("Zzzzz...");
         }
     }
 
     public String getStatus() {
-        return "Hunger: " + hunger + "\nEnergy: " + energy;
+        return "Hunger: " + hunger + " Energy: " + energy;
     }
 
     public boolean isAlive() {
