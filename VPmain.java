@@ -6,7 +6,6 @@ public class VPmain {
     public String askForInput(String question) {
         String answer = JOptionPane.showInputDialog(question);
 
-        
         if (answer == null) {
             answer = "quit";
         }
@@ -17,30 +16,18 @@ public class VPmain {
     public VPmain() {
         while (vp.isAlive()) {
             String action = askForInput(vp.getStatus()
-                    + " Choose: feed, play, pet, sleep, wait, or quit");
+                    + " Choose: feed, play, sleep, or quit");
 
-            if (action.equals("quit")) {
-                return;
-            } else if (action.equals("feed")) {
-                String food = askForInput("Choose: meal or treat");
-                if (food.equals("quit")) {
-                    return;
-                }
-                vp.feed(food);
+            if (action.equals("feed")) {
+                vp.feed();
             } else if (action.equals("play")) {
-                String game = askForInput("Choose: active or gentle");
-                if (game.equals("quit")) {
-                    return;
-                }
-                vp.play(game);
-            } else if (action.equals("pet")) {
-                vp.pet();
+                vp.play();
             } else if (action.equals("sleep")) {
                 vp.sleep();
-            } else if (action.equals("wait")) {
-                vp.waitTurn();
+            } else if (action.equals("quit")) {
+                return;
             } else {
-                System.out.println("Please choose one of the listed actions.");
+                System.out.println("Please choose a listed action.");
             }
         }
     }
