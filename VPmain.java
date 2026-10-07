@@ -25,7 +25,7 @@ public class VPmain {
             } else if (action.equals("sleep")) {
                 vp.sleep();
             } else if (action.equals("quit")) {
-                return;
+                break;
             } else {
                 System.out.println("Please choose a listed action.");
             }

@@ -12,7 +12,7 @@ public class VirtualPet {
 
     public void feed() {
         if (hunger >= 20) {
-            hunger = hunger - 20;
+            hunger = hunger - 40;
             face.setImage("happy_1");
             face.setMessage("Yum!");
         } else {
