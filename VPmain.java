@@ -3,35 +3,45 @@ import javax.swing.*;
 public class VPmain {
     VirtualPet vp = new VirtualPet();
 
-    public String askForInput(String q) {
-        String s = (String) JOptionPane.showInputDialog(
-                new JFrame(),
-                q,
-                "Input Dialog",
-                JOptionPane.PLAIN_MESSAGE);
-        return s;
+    public String askForInput(String question) {
+        String answer = JOptionPane.showInputDialog(question);
+
+        
+        if (answer == null) {
+            answer = "quit";
+        }
+
+        return answer;
     }
 
     public VPmain() {
-        String response = this.askForInput("Should I wake up?");
-        if (response.equals("yes")) {
-            face.setImage("awake");
-        }
-        vp.feed();
-        vp.exercise();
-        this.waitABeat(1000);
-        String ans = this.askForInput("Are you ready to sleep?");
-        if (ans.equals("yes"))
-            vp.sleep();
-        else
-            vp.exercise();
-    }
+        while (vp.isAlive()) {
+            String action = askForInput(vp.getStatus()
+                    + " Choose: feed, play, pet, sleep, wait, or quit");
 
-    public void waitABeat(int ms) {
-        try {
-            Thread.sleep(ms); // milliseconds
-        } catch (Exception e) {
-
+            if (action.equals("quit")) {
+                return;
+            } else if (action.equals("feed")) {
+                String food = askForInput("Choose: meal or treat");
+                if (food.equals("quit")) {
+                    return;
+                }
+                vp.feed(food);
+            } else if (action.equals("play")) {
+                String game = askForInput("Choose: active or gentle");
+                if (game.equals("quit")) {
+                    return;
+                }
+                vp.play(game);
+            } else if (action.equals("pet")) {
+                vp.pet();
+            } else if (action.equals("sleep")) {
+                vp.sleep();
+            } else if (action.equals("wait")) {
+                vp.waitTurn();
+            } else {
+                System.out.println("Please choose one of the listed actions.");
+            }
         }
     }
 
